@@ -12,3 +12,4 @@ components list:
 -arduino board
 -heartrate sensor
 -OLED Screen
+-Buzzer
