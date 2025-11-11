@@ -9,5 +9,6 @@ Development team:
 -Tommy
 
 components list:
--arduimo board
+-arduino board
 -heartrate sensor
+-OLED Screen
