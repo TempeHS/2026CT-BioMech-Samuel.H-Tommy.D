@@ -1,19 +1,21 @@
-#define VIBRATION_PIN 9     // Pin connected to vibration motor
-#define SENSOR_PIN 2        // Example: button or digital sensor
+#define BUZZER_PIN 8   // Connect the buzzer module’s signal pin here
 
-void setup() {
-  pinMode(VIBRATION_PIN, OUTPUT);
-  pinMode(SENSOR_PIN, INPUT);
+void setup() 
+  pinMode(BUZZER_PIN, OUTPUT);  // Set buzzer pin as output
+
+
+void loop() 
+  // Example: make buzzer sound when "something happens"
+  // Replace this condition with your sensor or trigger logic
+  bool trigger = true;  
+
+  if (trigger) {
+    digitalWrite(BUZZER_PIN, HIGH);  // Turn buzzer ON
+    delay(500);                      // Keep buzzing for 0.5 seconds
+    digitalWrite(BUZZER_PIN, LOW);   // Turn buzzer OFF
+    delay(500);                      // Pause before next buzz
+  }
 }
 
-void loop() {
-  int sensorState = digitalRead(SENSOR_PIN);
 
-  if (sensorState == HIGH) {
-    digitalWrite(VIBRATION_PIN, HIGH); // Turn on vibration
-    delay(500);                         // Vibrate for 0.5 seconds
-    digitalWrite(VIBRATION_PIN, LOW);  // Turn off
-  }
-
-  delay(100); // Small delay to avoid bouncing
 
