@@ -1,11 +1,10 @@
 #include <Wire.h>
-heartrate_sensor.ino myheartrate_sensor(6)
-void setup() {
+void heartrate_setup() {
     Serial.begin(9600);
     Serial.println("heart rate sensor:");
     Wire.begin();
 }
-void loop() {
+void heartrate_loop() {
     Wire.requestFrom(0xA0 >> 1, 1);    // request 1 bytes from slave device
     while(Wire.available()) {          // slave may send less than requested
         unsigned char c = Wire.read();   // receive heart rate value (a byte)

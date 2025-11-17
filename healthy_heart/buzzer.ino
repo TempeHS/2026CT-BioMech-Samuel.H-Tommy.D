@@ -1,12 +1,12 @@
 #define VIBRATION_PIN 9     // Pin connected to vibration motor
 #define SENSOR_PIN 2        // Example: button or digital sensor
 
-void setup() {
+void buzzer_setup() {
   pinMode(VIBRATION_PIN, OUTPUT);
   pinMode(SENSOR_PIN, INPUT);
 }
 
-void loop() {
+void buzzer_loop() {
   int sensorState = digitalRead(SENSOR_PIN);
 
   if (sensorState == HIGH) {
