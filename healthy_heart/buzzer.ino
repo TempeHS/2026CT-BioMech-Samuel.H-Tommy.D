@@ -1,31 +1,27 @@
-#define BUZZER_PIN 8   // Connect the buzzer module’s signal pin here
+/*
+  Purpose: Play a tone on Grove Buzzer
+  Hardware: Grove Buzzer on D3 (PWM pin)
+  Notes:
+    - Use tone() for melodies
+    - Connect to D3, D5, D6, D9, D10, or D11 for PWM/tone
+*/
 
-<<<<<<< HEAD
-void buzzer_setup() {
-  pinMode(VIBRATION_PIN, OUTPUT);
-  pinMode(SENSOR_PIN, INPUT);
+const int BUZZER_PIN = 3;  // Grove D3 (PWM)
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(BUZZER_PIN, OUTPUT);
+  Serial.println("Buzzer test ready");
 }
 
-void buzzer_loop() {
-  int sensorState = digitalRead(SENSOR_PIN);
-=======
-void setup() 
-  pinMode(BUZZER_PIN, OUTPUT);  // Set buzzer pin as output
+void loop() {
+  // Play 1kHz tone for 500ms
+  tone(BUZZER_PIN, 1000);  // 1000 Hz
+  delay(500);
 
-
-void loop() 
-  // Example: make buzzer sound when "something happens"
-  // Replace this condition with your sensor or trigger logic
-  bool trigger = true;  
-
-  if (trigger) {
-    digitalWrite(BUZZER_PIN, HIGH);  // Turn buzzer ON
-    delay(500);                      // Keep buzzing for 0.5 seconds
-    digitalWrite(BUZZER_PIN, LOW);   // Turn buzzer OFF
-    delay(500);                      // Pause before next buzz
-  }
+  // Stop tone for 500ms
+  noTone(BUZZER_PIN);
+  delay(500);
 }
-
->>>>>>> 4fb06adcb1ff7a378c4bd871df20b4ab698c6fb9
 
 
