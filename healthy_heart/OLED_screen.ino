@@ -7,7 +7,7 @@ Adafruit_SSD1306 display(128, 64, &Wire, -1);
 
 const int HR_PIN = A0;   // Analog pin connected to heart rate sensor
 unsigned long lastBeat = 0;
-int bpm = 6000 / dt;
+int bpm = 6000 / int;
 
 void setup() {
   Serial.begin(9600);
