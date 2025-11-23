@@ -1,34 +1,14 @@
-int PULSE_PIN = 2;
-volatile unsigned long lastBeatMs = 0;
-volatile unsigned int bpm = 0;
-volatile bool newBeat = false;
-
-void pulseISR() {
-  unsigned long now = millis();
-  unsigned long dt = now - lastBeatMs;
-  if (lastBeatMs != 0 && dt > 250 && dt < 2000) {
-    bpm = 60000 / dt;
-    newBeat = true;
-  }
-  lastBeatMs = now;
-}
-
+#include <Wire.h>
 void setup() {
-  Serial.begin(9600);
-  pinMode(PULSE_PIN, INPUT);
-  attachInterrupt(digitalPinToInterrupt(PULSE_PIN), pulseISR, RISING);
-  Serial.println("Pulse sensor test ready");
+    Serial.begin(9600);
+    Serial.println("heart rate sensor:");
+    Wire.begin();
 }
-
 void loop() {
-  if (newBeat) {
-    noInterrupts();
-    unsigned int currentBpm = bpm;
-    newBeat = false;
-    interrupts();
-
-    Serial.print("BPM: ");
-    Serial.println(currentBpm);
-  }
-  delay(50);
+    Wire.requestFrom(0xA0 >> 1, 1);    // request 1 bytes from slave device
+    while(Wire.available()) {          // slave may send less than requested
+        unsigned char c = Wire.read();   // receive heart rate value (a byte)
+        Serial.println(c, DEC);         // print heart rate value
+    }
+    delay(500);
 }
