@@ -1,6 +1,7 @@
 #include <Wire.h>
 
-volatile int heartRate = 0;  // Global variable - Tab 2 will read this
+// CRITICAL: Declare OUTSIDE all functions so Tab 2 can access it
+volatile int heartRate = 0;
 
 void setup() {
     Serial.begin(9600);
@@ -9,10 +10,10 @@ void setup() {
 }
 
 void loop() {
-    Wire.requestFrom(0xA0 >> 1, 1);    // request 1 byte from I2C address 0x50
-    while (Wire.available()) {         
+    Wire.requestFrom(0xA0 >> 1, 1);
+    while (Wire.available()) {
         unsigned char c = Wire.read();
-        heartRate = (int)c;             // Update global heartRate variable
+        heartRate = (int)c;  // Update the global variable
         Serial.print("HR: ");
         Serial.println(heartRate, DEC);
     }
