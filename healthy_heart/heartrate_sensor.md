@@ -1,2 +1,3 @@
 heart rate sensor is working 
    -we are experiencing trouble with the heartrate being declared too much with us often getting a feedback message saying "heartrate not declared in this scope"
+   -when we try to connect the heartrate sensor to the buzzer tso that it buzzes when the heart rate exceeds 150bpm, it will not work and give us an error, we are still trying to make this work, as our next step.
