@@ -1,10 +1,10 @@
 #include <Wire.h>
 
-volatile int heartrate = 0;  // lowercase
+volatile int heartrate  = 0;  // lowercase
 
 void setup() {
     Serial.begin(9600);
-    Serial.println("heartrate sensor:");
+    Serial.println("heartrate");
     Wire.begin();
 }
 
@@ -17,4 +17,5 @@ void loop() {
         Serial.println(heartrate, DEC);
     }
     delay(500);
+
 }
