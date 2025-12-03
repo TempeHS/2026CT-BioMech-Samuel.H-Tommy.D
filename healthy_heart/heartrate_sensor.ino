@@ -1,14 +1,20 @@
 #include <Wire.h>
+#define HR_SENSOR_ADDR 0x50  // Confirm in README
+
 void setup() {
-    Serial.begin(9600);
-    Serial.println("heart rate sensor:");
-    Wire.begin();
+  Serial.begin(9600);
+  Wire.begin();
+  Serial.println("Heart Rate Sensor Test");
 }
+
 void loop() {
-    Wire.requestFrom(0xA0 >> 1, 1);    // request 1 bytes from slave device
-    while(Wire.available()) {          // slave may send less than requested
-        unsigned char c = Wire.read();   // receive heart rate value (a byte)
-        Serial.println(c, DEC);         // print heart rate value
-    }
-    delay(500);
+  Wire.requestFrom(HR_SENSOR_ADDR, 1);
+  if (Wire.available()) {
+    uint8_t hr = Wire.read();
+    Serial.print("Heart Rate: ");
+    Serial.println(hr);
+  } else {
+    Serial.println("No data from sensor");
+  }
+  delay(500);
 }
