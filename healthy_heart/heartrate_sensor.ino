@@ -1,21 +1,14 @@
 #include <Wire.h>
-
-volatile int heartrate  = 0;  // lowercase
-
 void setup() {
     Serial.begin(9600);
-    Serial.println("heartrate");
+    Serial.println("heart rate sensor:");
     Wire.begin();
 }
-
 void loop() {
-    Wire.requestFrom(0xA0 >> 1, 1);
-    while (Wire.available()) {
-        unsigned char c = Wire.read();
-        heartrate = (int)c;  // lowercase
-        Serial.print("HR: ");
-        Serial.println(heartrate, DEC);
+    Wire.requestFrom(0xA0 >> 1, 1);    // request 1 bytes from slave device
+    while(Wire.available()) {          // slave may send less than requested
+        unsigned char c = Wire.read();   // receive heart rate value (a byte)
+        Serial.println(c, DEC);         // print heart rate value
     }
     delay(500);
-
 }
